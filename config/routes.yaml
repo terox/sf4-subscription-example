@@ -1,3 +1,19 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /
+    controller: App\Controller\MainController::index
+
+app.buy:
+    path: /buy/{product}/for/{user}
+    controller: App\Controller\MainController::buy
+
+app.disable:
+    path: /disable/{id}
+    controller: App\Controller\MainController::disable
+
+app.expire:
+    path: /expire/{id}
+    controller: App\Controller\MainController::expire
+
+app.renew:
+    path: /renew/{id}
+    controller: App\Controller\MainController::renew

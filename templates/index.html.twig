@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+        {% if errorMessage != false %}
+            <div class="alert alert-danger" role="alert">
+                <strong>{{ errorClass }}</strong>
+                <div>{{ errorMessage.message }}</div>
+            </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Current subscriptions in your application</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>User email</th>
+                            <th>Product</th>
+                            <th>Auto-renew</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Active</th>
+                            <th>Reason</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for subscription in subscriptions %}
+                            <tr>
+                                <td>{{ subscription.user.username }}</td>
+                                <td>{{ subscription.product.name }}</td>
+                                <td>
+                                    {% if subscription.autoRenewal %}
+                                        <span class="label label-success">Yes</span>
+                                    {% else %}
+                                        <span class="label label-danger">No</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ subscription.startDate | date('Y-m-d H:i:s') }}</td>
+                                <td>
+                                    {% if subscription.endDate == null %}
+                                        <span>Permament</span>
+                                    {% else %}
+                                        <span>{{ subscription.endDate | date('Y-m-d H:i:s') }}</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if subscription.active %}
+                                        <span class="label label-success">Yes</span>
+                                    {% else %}
+                                        <span class="label label-danger">No</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {{ subscription.reason }}
+                                </td>
+                                <td>
+                                    <a class="btn btn-xs btn-primary" href="{{ path('app.disable', { id: subscription.id } ) }}">
+                                        Disable (cancel)
+                                    </a>
+
+                                    <a class="btn btn-xs btn-primary" href="{{ path('app.expire', { id: subscription.id }) }}">
+                                        Expire
+                                    </a>
+
+                                    <a class="btn btn-xs btn-primary" href="{{ path('app.renew', { id: subscription.id }) }}">
+                                        Renew
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Buy a Product</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Product name</th>
+                            <th>User email</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                             {% for product in products %}
+                                <tr>
+                                    <td>{{ product.name }}</td>
+                                    <td>{{ user.username }}</td>
+                                    <td>
+                                        <a class="btn btn-sm btn-warning" href="{{ path('app.buy', { product: product.id, user: user.id  }) }}">
+                                            <i class="glyphicon glyphicon-shopping-cart"></i> Buy
+                                        </a>
+                                    </td>
+                                </tr>
+                             {% endfor %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

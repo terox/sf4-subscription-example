@@ -3,6 +3,8 @@ SubscriptionBundle Example Project (Symfony 4)
 
 This project is only an example of the implementation of [http://www.github.com/terox/SubscriptionBundle](SubscriptionBundle).
 
+<img src="https://raw.githubusercontent.com/terox/sf4-subscription-example/master/doc/images/screenshot.png" alt="Screenshot">
+
 ## Requeriments
 
 * Docker (to start the development environment).
@@ -38,4 +40,4 @@ root@3ee8e902e63b:/var/www/application# bin/console doctrine:fixtures:load
 
 #### 4. Test the bundle in your browser:
 
-***http://localhost:8080***
+***http://localhost:8088***

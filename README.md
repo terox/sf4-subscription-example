@@ -1,7 +1,7 @@
 SubscriptionBundle Example Project (Symfony 4)
 ==============================================
 
-This project is only an example of the implementation of [http://www.github.com/terox/SubscriptionBundle](SubscriptionBundle).
+This project is only an example of the implementation of [SubscriptionBundle](http://www.github.com/terox/SubscriptionBundle).
 
 <img src="https://raw.githubusercontent.com/terox/sf4-subscription-example/master/doc/images/screenshot.png" alt="Screenshot">
 

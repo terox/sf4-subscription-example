@@ -27,7 +27,7 @@ class MainController extends Controller
 
         try {
 
-            $subscription = $this->get('terox.subscription.manager')->create($product, 'end_last');
+            $subscription = $this->get('terox.subscription.manager')->create($product);
             $subscription->setUser($user);
 
             // You can do this step in other service (or moment) if you want.
